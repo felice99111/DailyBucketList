@@ -7,4 +7,7 @@
     <string name="friday">Fr</string>
     <string name="saturday">Sa</string>
     <string name="sunday">So</string>
+    <string name="action_search">Search</string>
+    <string name="action_add_goal">Add Goal</string>
+    <string name="action_settings">Settings</string>
 </resources>
