@@ -71,11 +71,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
+                Toast.makeText(this, "Suchfunktion wird am Ende implementiert", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_add_goal:
                 alertDialogAdd.show();
                 inputAddNewGoal.setText("");
+                return true;
             case R.id.action_delete:
+                Toast.makeText(this, "Löschfunktion wird bald implementiert", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_settings:
                 return true;
