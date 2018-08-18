@@ -21,4 +21,8 @@ public class Config {
     public static final String NAME_COLUMN = "NAME";
     public static final String GOAL_REACHED_COLUMN = "GOAL_REACHED";
     public static final String DATE_COLUMN = "DATE";
+
+    //Constants for Notification
+
+    public static final String CHANNEL_ID = "personal_notification";
 }

@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private List<Goal> goalDB;
     private ListView listView;
     private ArrayAdapter<Goal> adapter;
+
+    //ADDING NEW GOAL: Dialog and EditText Object
     private EditText inputAddNewGoal;
-    private Button buttonAddNewGoal;
     private AlertDialog alertDialogAdd;
 
     @Override
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         goalDB = BucketListDatabase.getInstance(this).readAllGoals();
 
         initUI();
-        initActionBarAddNewGoal();
+        initActionBar();
 
     }
 
@@ -58,8 +59,43 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+    private void refreshListView() {
+        goalDB.clear();
+        goalDB.addAll(BucketListDatabase.getInstance(this).readAllGoals());
+        adapter.notifyDataSetChanged();
+    }
+
 
     //Implementieren der Action Bar:
+
+    private void initActionBar() {
+        addNewGoal();
+    }
+
+    private void addNewGoal() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Welches Ziel setzt du dir?");
+        inputAddNewGoal = new EditText(this);
+        builder.setView(inputAddNewGoal);
+
+        builder.setPositiveButton("hinzufügen", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String goalName = inputAddNewGoal.getText().toString();
+                BucketListDatabase database = BucketListDatabase.getInstance(MainActivity.this); //Kontext des onClickListeners, deshalb würde nur this eine falsche Referenz übergeben
+                database.createGoal(new Goal(goalName, Calendar.getInstance()));
+                refreshListView();
+            }
+        });
+
+        builder.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialogAdd = builder.create();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,39 +123,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-    private void initActionBarAddNewGoal() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Welches Ziel setzt du dir?");
-        inputAddNewGoal = new EditText(this);
-        builder.setView(inputAddNewGoal);
-
-        builder.setPositiveButton("hinzufügen", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String goalName = inputAddNewGoal.getText().toString();
-                BucketListDatabase database = BucketListDatabase.getInstance(MainActivity.this); //Kontext des onClickListeners, deshalb würde nur this eine falsche Referenz übergeben
-                database.createGoal(new Goal(goalName, Calendar.getInstance()));
-                refreshListView();
-            }
-        });
-
-        builder.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alertDialogAdd = builder.create();
-    }
-
-
-    private void refreshListView() {
-        goalDB.clear();
-        goalDB.addAll(BucketListDatabase.getInstance(this).readAllGoals());
-        adapter.notifyDataSetChanged();
-    }
 }
+
+
+
+
 
 /** Methode, um neuen Eintrag in die Datenbank zu erstellen
  BucketListDatabase database = BucketListDatabase.getInstance(MainActivity.this); //Kontext des onClickListeners, deshalb würde nur this eine falsche Referenz übergeben
