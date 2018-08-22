@@ -13,6 +13,11 @@ import java.util.List;
 
 public class BucketListAdapter extends ArrayAdapter<Goal>{
 
+
+    // Test
+    private void test() {
+    }
+
     //Nimm dir ÜB07 TableItemAdapter als "Vorbild". Die @NonNull Querys kannst du so stehen lassen, die kommen von der Datenbank
 
 
