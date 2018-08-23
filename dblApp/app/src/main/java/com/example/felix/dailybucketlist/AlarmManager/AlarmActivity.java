@@ -7,16 +7,19 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.felix.dailybucketlist.Config;
+import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
 
 import java.util.Calendar;
@@ -25,12 +28,15 @@ public class AlarmActivity extends AppCompatActivity {
 
     private Button buttonSetAlarm;
     private TimePicker timePicker;
+    private Intent mainActivityIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
         createNotificationChannel();
+
+        mainActivityIntent = new Intent(this, MainActivity.class);
         timePicker = (TimePicker) findViewById(R.id.timePicker);
 
         buttonSetAlarm = (Button) findViewById(R.id.buttonSetAlarm);
@@ -61,7 +67,7 @@ public class AlarmActivity extends AppCompatActivity {
                 }
 
                 setAlarm(calendar.getTimeInMillis());
-
+                startActivity(mainActivityIntent);
             }
         });
 
