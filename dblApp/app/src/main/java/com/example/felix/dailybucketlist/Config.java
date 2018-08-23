@@ -25,4 +25,5 @@ public class Config {
     //Constants for Notification
 
     public static final String CHANNEL_ID = "personal_notification";
+    public static final int NOTIFICATION_ID = 1;
 }
