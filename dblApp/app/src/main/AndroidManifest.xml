@@ -11,23 +11,26 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".AlarmManager.AlarmActivity"
-            android:taskAffinity=""
             android:excludeFromRecents="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:taskAffinity="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <receiver
             android:name=".AlarmManager.AlarmNotificationReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
+        <activity
+            android:name=".TabbingTutorial.TabbingActivity"
+            android:label="@string/title_activity_tabbing"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
