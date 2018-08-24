@@ -15,8 +15,8 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="tab1">tab1</string>
-    <string name="tab2">tab2</string>
+    <string name="tab1">Tutorial Seite 1</string>
+    <string name="tab2">Tutorial Seite 2</string>
     <string name="title_activity_tabbing__v2">TabbingActivity_V2</string>
 
 </resources>

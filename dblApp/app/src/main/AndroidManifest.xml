@@ -28,10 +28,6 @@
             android:exported="true" />
 
         <activity
-            android:name=".TabbingTutorial.TabbingActivity"
-            android:label="@string/title_activity_tabbing"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".TabbingTutorial.TabbingActivity_V2"
             android:label="@string/title_activity_tabbing__v2"
             android:theme="@style/AppTheme.NoActionBar"></activity>
