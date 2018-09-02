@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.example.felix.dailybucketlist.Config;
+import com.example.felix.dailybucketlist.Main.BucketListActivity;
 import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
 
@@ -18,7 +19,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         //click auf not führt nicht in die main activity!
-        Intent newIntent = new Intent(context, MainActivity.class);
+        Intent newIntent = new Intent(context, BucketListActivity.class);
         newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, newIntent, 0);
 

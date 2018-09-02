@@ -19,6 +19,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.felix.dailybucketlist.Config;
+import com.example.felix.dailybucketlist.Main.BucketListActivity;
 import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
 import com.example.felix.dailybucketlist.TabbingTutorial.TabbingActivity_V2;
@@ -39,7 +40,7 @@ public class AlarmActivity extends AppCompatActivity {
 
 
         // ACHTUNG: Habe hier statt MainActivity.class meine TabbingActivity_V2 eingefügt, zum Testen!!!
-        mainActivityIntent = new Intent(this, TabbingActivity_V2.class);
+        mainActivityIntent = new Intent(this, BucketListActivity.class);
         timePicker = (TimePicker) findViewById(R.id.timePicker);
 
         buttonSetAlarm = (Button) findViewById(R.id.buttonSetAlarm);

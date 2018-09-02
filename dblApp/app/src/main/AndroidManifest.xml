@@ -13,14 +13,10 @@
             android:name=".AlarmManager.AlarmActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity="">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:taskAffinity="" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".Main.BucketListActivity" />
+        <activity android:name=".Goals.GoalActivity" />
 
         <receiver
             android:name=".AlarmManager.AlarmNotificationReceiver"
@@ -28,9 +24,29 @@
             android:exported="true" />
 
         <activity
-            android:name=".TabbingTutorial.TabbingActivity_V2"
-            android:label="@string/title_activity_tabbing__v2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".TabbingTutorial.TabbingActivity"
+            android:label="@string/title_activity_tabbing"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".Widget.BucketListAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/bucket_list_app_widget_info" />
+        </receiver>
+
+        <service android:name=".Widget.WidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
+
     </application>
 
 </manifest>

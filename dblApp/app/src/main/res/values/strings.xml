@@ -18,5 +18,7 @@
     <string name="tab1">Tutorial Seite 1</string>
     <string name="tab2">Tutorial Seite 2</string>
     <string name="title_activity_tabbing__v2">TabbingActivity_V2</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

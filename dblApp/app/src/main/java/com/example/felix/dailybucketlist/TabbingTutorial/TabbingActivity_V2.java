@@ -34,7 +34,7 @@ public class TabbingActivity_V2 extends AppCompatActivity implements Tab1.OnFrag
 
 
         final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
-        final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
