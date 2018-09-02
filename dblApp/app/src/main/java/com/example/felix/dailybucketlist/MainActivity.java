@@ -5,31 +5,32 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import com.example.felix.dailybucketlist.Adapter.BucketListCustomAdapter;
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Goals.Goal;
 
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<Goal> goalDB;
-    private ListView listView;
-    private ArrayAdapter<Goal> adapter;
+    private List<Goal> allGoals, goals_upcoming, goals_overdue;
+    private ListView listView1, listView2;
+    private ArrayAdapter<Goal> adapter_upcoming, adapter_overdue;
 
     //ADDING NEW GOAL: Dialog and EditText Object
     private EditText inputAddNewGoal;
@@ -40,7 +41,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        goalDB = BucketListDatabase.getInstance(this).readAllGoals();
+        allGoals = BucketListDatabase.getInstance(this).readAllGoals();
+        goals_upcoming = new ArrayList<Goal>();
+        goals_overdue = new ArrayList<Goal>();
+        for (Goal goal : allGoals) {
+            Date currentTime = Calendar.getInstance().getTime();
+            if (currentTime.after(goal.getDate().getTime())) {
+                goals_overdue.add(goal);
+            }
+            else{
+                goals_upcoming.add(goal);
+            }
+        }
 
         initUI();
         initActionBar();
@@ -52,17 +64,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initListView() {
-        listView = (ListView) findViewById(R.id.bucketListView);
-        View header = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.table_item, null);
-        listView.addHeaderView(header);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, goalDB);
-        listView.setAdapter(adapter);
+        listView1 = (ListView) findViewById(R.id.bucketListView_overdue);
+        listView2 = (ListView) findViewById(R.id.bucketListView_upcoming);
+        listView1.addHeaderView(((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.table_heading_overdue, null));
+        listView2.addHeaderView(((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.table_heading_upcoming, null));
+
+
+        listView1.setAdapter(adapter_overdue);
+        listView2.setAdapter(adapter_upcoming);
     }
 
     private void refreshListView() {
-        goalDB.clear();
-        goalDB.addAll(BucketListDatabase.getInstance(this).readAllGoals());
-        adapter.notifyDataSetChanged();
+        allGoals.clear();
+        allGoals.addAll(BucketListDatabase.getInstance(this).readAllGoals());
+        adapter_upcoming.notifyDataSetChanged();
+        adapter_overdue.notifyDataSetChanged();
     }
 
 

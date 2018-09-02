@@ -70,6 +70,10 @@ public class BucketListDatabase extends SQLiteOpenHelper {
             goal = new Goal(cursor.getString(cursor.getColumnIndex(Config.NAME_COLUMN)));
             goal.setId(cursor.getLong(cursor.getColumnIndex(Config.ID_COLUMN)));
 
+            if(cursor.getInt(cursor.getColumnIndex(Config.GOAL_REACHED_COLUMN)) == 1){
+                goal.setReached(true);
+            }
+
             Calendar calendar = null;
 
             if(!cursor.isNull(cursor.getColumnIndex(Config.DATE_COLUMN))) {
@@ -100,14 +104,14 @@ public class BucketListDatabase extends SQLiteOpenHelper {
     }
 
     public Goal updateGoal(Goal goal) {
-        SQLiteDatabase database = this.getReadableDatabase();
+        SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Config.NAME_COLUMN, goal.getName());
         values.put(Config.GOAL_REACHED_COLUMN, goal.isReached() ? 1 : 0);
         values.put(Config.DATE_COLUMN, goal.getDate() == null ? null : goal.getDate().getTimeInMillis()/1000);
 
-        database.update(Config.TABLE_NAME, values, Config.ID_COLUMN + " = ?", new String[]{String.valueOf(goal.getId())});
+        int i = database.update(Config.TABLE_NAME, values, Config.ID_COLUMN + " = ?", new String[]{String.valueOf(goal.getId())});
         database.close();
 
         return this.readGoal(goal.getId());

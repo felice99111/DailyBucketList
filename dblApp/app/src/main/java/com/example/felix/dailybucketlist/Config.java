@@ -26,4 +26,13 @@ public class Config {
 
     public static final String CHANNEL_ID = "personal_notification";
     public static final int NOTIFICATION_ID = 1;
+
+    //Constants for Tutorial
+    public static final String TUTORIAL_PICTURE_01 = "tut1";
+    public static final String TUTORIAL_PICTURE_02 = "tut2";
+    public static final String TUTORIAL_PICTURE_03 = "tut3";
+    public static final String TUTORIAL_TEXT_01 = "Organisiere deine Aufgaben und behalte den Überblick. Per Swipe wechselst du zwischen den Wochen.";
+    public static final String TUTORIAL_TEXT_02 = "Über das '+' Symbol erstellst du neue Aufgaben.";
+    public static final String TUTORIAL_TEXT_03 = "Wähle eine Aufgabe aus und markiere sie als 'erfüllt'.";
+
 }
