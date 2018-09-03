@@ -1,6 +1,7 @@
 package com.example.felix.dailybucketlist.TabbingTutorial;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.felix.dailybucketlist.AlarmManager.AlarmActivity;
+import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Main.BucketListActivity;
 import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
@@ -49,7 +52,7 @@ public class FragmentPage extends Fragment{
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), BucketListActivity.class);
+                    Intent intent = new Intent(view.getContext(), AlarmActivity.class);
                     view.getContext().startActivity(intent);}
             });
 

@@ -61,6 +61,9 @@ public class BucketListActivity extends AppCompatActivity {
     }
 
     private void refreshListView() {
+        allGoals.clear();
+        allGoals.addAll(BucketListDatabase.getInstance(this).readAllGoals());
+
         Intent sintent = new Intent(this, BucketListAppWidget.class);
         sintent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), BucketListAppWidget.class));
@@ -71,6 +74,8 @@ public class BucketListActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+
+    //Implementieren der Action Bar:
 
     private void initActionBar() {
         addNewGoal();

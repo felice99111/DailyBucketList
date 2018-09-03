@@ -37,12 +37,17 @@ public class AlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
         createNotificationChannel();
+        mainActivityIntent = new Intent(AlarmActivity.this, BucketListActivity.class);
 
+        //Die AlarmActivity soll nur aufgerufen werden, wenn noch keine Uhrzeit für die Benachrichtigung gesetzt wurde.
+        //D.h. beim ersten Start der App. Von da an wird die AlarmActivity umgangen und sofort die BucketListActivity aufgerufen.
+        //Die Uhrzeit der Benachrichtigung kann jederzeit in den Settings geändert werden.
 
-        // ACHTUNG: Habe hier statt MainActivity.class meine TabbingActivity_V2 eingefügt, zum Testen!!!
-        mainActivityIntent = new Intent(this, BucketListActivity.class);
+        /*if(checkAlarmSet()) {
+            startActivity(mainActivityIntent);
+        }*/
+
         timePicker = (TimePicker) findViewById(R.id.timePicker);
-
         buttonSetAlarm = (Button) findViewById(R.id.buttonSetAlarm);
         buttonSetAlarm.setOnClickListener(new View.OnClickListener() {
 
@@ -71,11 +76,21 @@ public class AlarmActivity extends AppCompatActivity {
                 }
 
                 setAlarm(calendar.getTimeInMillis());
+                saveAlarmSet();
                 startActivity(mainActivityIntent);
             }
         });
 
     }
+
+    private boolean checkAlarmSet() {
+        //Über SharedPraferences und dem Key ALARM_PREFERENCES_KEY wird ausgelesen, welcher boolean "hinterlassen wurde"
+        SharedPreferences settings = getApplicationContext().getSharedPreferences(Config.ALARM_PREFERENCES, 0);
+        boolean alarmSet = settings.getBoolean(Config.ALARM_PREFERENCES_KEY, false);
+        Log.d("Alarm set: ", alarmSet ? "true" : "false");
+        return alarmSet;
+    }
+
 
     private void setAlarm(long timeInMillis) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -86,11 +101,16 @@ public class AlarmActivity extends AppCompatActivity {
         Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show();
     }
 
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
+    private void saveAlarmSet() {
+        SharedPreferences settings = getApplicationContext().getSharedPreferences(Config.ALARM_PREFERENCES, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Config.ALARM_PREFERENCES_KEY, Config.ALARM_SET);
+        editor.apply();
+    }
 
-        //Strings etc. auslagern und korrekt setzen!
+    private void createNotificationChannel() {
+        //Ab API 26 ist es notwendig, jeder Notification einen eigenen Channel hinzuzufügen
+        //Bei älternen APIs wird dieser Channel einfach ignoriert (ist nicht in der Support Libary enthalten)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Channel name";

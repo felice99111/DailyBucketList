@@ -21,4 +21,8 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
 
+    <!--NOTIFICATION STRINGS-->
+    <string name="notification_title">Hast Du heute deine Ziele erreicht?</string>
+    <string name="notification_text">Trage es jetzt ein!</string>
+
 </resources>

@@ -26,6 +26,11 @@ public class Config {
 
     public static final String CHANNEL_ID = "personal_notification";
     public static final int NOTIFICATION_ID = 1;
+    public static final String ALARM_PREFERENCES = "alarm_preferences";
+    public static final String ALARM_PREFERENCES_KEY = "alarm_key";
+    public static final boolean ALARM_SET = true;
+    public static final boolean ALARM_NOT_SET = false;
+
 
     //Constants for Tutorial
     public static final String TUTORIAL_PICTURE_01 = "tut1";
