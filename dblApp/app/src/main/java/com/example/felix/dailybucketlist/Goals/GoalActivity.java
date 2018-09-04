@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Main.BucketListActivity;
-import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
 
 import org.w3c.dom.Text;

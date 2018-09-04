@@ -1,7 +1,6 @@
 package com.example.felix.dailybucketlist.AlarmManager;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,9 +10,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
 
 import com.example.felix.dailybucketlist.Config;
-import com.example.felix.dailybucketlist.Goals.GoalActivity;
 import com.example.felix.dailybucketlist.Main.BucketListActivity;
-import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
 
 public class AlarmNotificationReceiver extends BroadcastReceiver {

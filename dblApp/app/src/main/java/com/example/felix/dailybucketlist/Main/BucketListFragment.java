@@ -1,10 +1,9 @@
 package com.example.felix.dailybucketlist.Main;
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import com.example.felix.dailybucketlist.R;
 
 import java.util.ArrayList;
 
-// Fragement zeigt die aktuellen Aufgaben der Woche an
+// Fragement zeigt die aktuellen Aufgaben der Woche an.
 public class BucketListFragment extends Fragment {
 
     ArrayList<String> goalIds;
@@ -42,7 +41,7 @@ public class BucketListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         goalsForWeek = new ArrayList<Goal>();
 
-        // Hole alle Aufgaben der aktuellen Woche basierend auf den goalIds
+        // Holt alle Aufgaben der aktuellen Woche basierend auf den goalIds.
         Bundle bundle = getArguments();
         week = bundle.getInt("week");
         goalIds = bundle.getStringArrayList("goalIds");
@@ -51,7 +50,7 @@ public class BucketListFragment extends Fragment {
             goalsForWeek.add(BucketListDatabase.getInstance(getContext()).readGoal(Long.parseLong(goalId)));
         }
 
-        // Setze Kalenderwoche
+        // Setzt Kalenderwoche.
         TextView tv_week = getView().findViewById(R.id.textView_week);
         tv_week.setText("KW " + Integer.toString(week));
 
@@ -61,12 +60,12 @@ public class BucketListFragment extends Fragment {
 
     private void initListView() {
 
-        // Übergebe alle Aufgaben der Woche an den Adapter zur Listenanzeige
+        // Übergibt alle Aufgaben der Woche an den Adapter zur Listenanzeige.
         bucketListView = getView().findViewById(R.id.bucketListView);
         adapter = new BucketListCustomAdapter(getContext(), goalsForWeek);
         bucketListView.setAdapter(adapter);
 
-        // Wenn keine Aufgabe -> zeige Ersatztext
+        // Wenn keine Aufgabe -> zeigt Ersatztext.
         if(goalsForWeek.isEmpty()){
             bucketListView.addHeaderView(((LayoutInflater) getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.bucketlist_heading, null));
         }

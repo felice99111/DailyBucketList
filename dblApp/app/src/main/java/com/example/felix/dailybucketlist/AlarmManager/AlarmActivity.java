@@ -1,7 +1,6 @@
 package com.example.felix.dailybucketlist.AlarmManager;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Main.BucketListActivity;
-import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
 
 import java.util.Calendar;

@@ -2,8 +2,7 @@ package com.example.felix.dailybucketlist.Widget;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.widget.AdapterView;
+
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -15,37 +14,27 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-// RemoteViewFactory zur Anzeige der Aufgaben der aktuellen Woche im Widget
+// RemoteViewFactory zur Anzeige der Aufgaben der aktuellen Woche im Widget.
 public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     private Context context;
     private ArrayList<Goal> goalList;
 
-    public WidgetRemoteViewsFactory(Context applicationContext, Intent intent) {
+    public WidgetRemoteViewsFactory(Context applicationContext) {
         context = applicationContext;
     }
 
     @Override
     public void onCreate() {
-        // Hole alle Aufgaben der Woche und speicher sie in der Liste
+        // Holt alle Aufgaben der Woche und speichert sie in der Liste.
         List<Goal> allGoals = BucketListDatabase.getInstance(this.context).readAllGoals();
         int currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
-        goalList = new ArrayList<Goal>();
+        goalList = new ArrayList<>();
         for(Goal goal : allGoals){
             if(goal.getDate().get(Calendar.WEEK_OF_YEAR) == currentWeek){
                 goalList.add(goal);
             }
         }
-    }
-
-    @Override
-    public void onDataSetChanged() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
     }
 
     @Override
@@ -55,7 +44,7 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     @Override
     public RemoteViews getViewAt(int position) {
-        // Setze RemoteView Text für alle Aufgaben
+        // Setzt RemoteView Text für alle Aufgaben
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.collection_widget_list_item);
         rv.setTextViewText(R.id.widgetItemTaskNameLabel, goalList.get(position).getName());
 
@@ -82,4 +71,11 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
         return true;
     }
 
+    @Override
+    public void onDataSetChanged() {
+    }
+
+    @Override
+    public void onDestroy() {
+    }
 }
