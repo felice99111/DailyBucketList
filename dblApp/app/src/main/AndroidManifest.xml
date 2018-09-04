@@ -9,14 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".AlarmManager.AlarmActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity="" />
+            android:taskAffinity="" >
+            <intent-filter>
+                <action android:name="com.example.felix.dailybucketlist.AlarmManager"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".MainActivity" />
         <activity android:name=".Main.BucketListActivity" />
         <activity android:name=".Goals.GoalActivity" />
+        <activity android:name=".Preferences.SettingsActivity" />
 
         <receiver
             android:name=".AlarmManager.AlarmNotificationReceiver"
@@ -29,8 +37,11 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.example.felix.dailybucketlist.TabbingTutorial" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

@@ -25,19 +25,23 @@ public class Config {
     //Constants for Notification
 
     public static final String CHANNEL_ID = "personal_notification";
+    public static final CharSequence CHANNEL_NAME = "enter_goal_reminder";
+    public static final String CHANNEL_DESCRIPTION = "";
     public static final int NOTIFICATION_ID = 1;
     public static final String ALARM_PREFERENCES = "alarm_preferences";
     public static final String ALARM_PREFERENCES_KEY = "alarm_key";
     public static final boolean ALARM_SET = true;
     public static final boolean ALARM_NOT_SET = false;
 
-
     //Constants for Tutorial
+
     public static final String TUTORIAL_PICTURE_01 = "tut1";
     public static final String TUTORIAL_PICTURE_02 = "tut2";
     public static final String TUTORIAL_PICTURE_03 = "tut3";
     public static final String TUTORIAL_TEXT_01 = "Organisiere deine Aufgaben und behalte den Überblick. Per Swipe wechselst du zwischen den Wochen.";
     public static final String TUTORIAL_TEXT_02 = "Über das '+' Symbol erstellst du neue Aufgaben.";
     public static final String TUTORIAL_TEXT_03 = "Wähle eine Aufgabe aus und markiere sie als 'erfüllt'.";
+    public static final String TUTORIAL_EXTRA_NAME = "calling-activity";
+    public static final String TUTORIAL_EXTRA_VALUE = "tabbing";
 
 }

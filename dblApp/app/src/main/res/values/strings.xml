@@ -24,5 +24,9 @@
     <!--NOTIFICATION STRINGS-->
     <string name="notification_title">Hast Du heute deine Ziele erreicht?</string>
     <string name="notification_text">Trage es jetzt ein!</string>
+    <string name="pref_summary_set_notification">Ändere den Zeitpunkt deiner Benachrichtigung</string>
+    <string name="pref_title_set_notification">Benachrichtigungszeitpunkt</string>
+    <string name="pref_summary_show_tutorial">Das Tutorial erklärt Dir, wie die App funktioniert</string>
+    <string name="pref_title_show_tutorial">Tutorial</string>
 
 </resources>

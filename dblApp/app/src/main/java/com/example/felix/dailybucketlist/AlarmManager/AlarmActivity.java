@@ -43,10 +43,6 @@ public class AlarmActivity extends AppCompatActivity {
         //D.h. beim ersten Start der App. Von da an wird die AlarmActivity umgangen und sofort die BucketListActivity aufgerufen.
         //Die Uhrzeit der Benachrichtigung kann jederzeit in den Settings geändert werden.
 
-        /*if(checkAlarmSet()) {
-            startActivity(mainActivityIntent);
-        }*/
-
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         buttonSetAlarm = (Button) findViewById(R.id.buttonSetAlarm);
         buttonSetAlarm.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +70,7 @@ public class AlarmActivity extends AppCompatActivity {
                             0
                     );
                 }
-
-                setAlarm(calendar.getTimeInMillis());
+                setAlarm(calendar.getTimeInMillis(), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
                 saveAlarmSet();
                 startActivity(mainActivityIntent);
             }
@@ -92,13 +87,19 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
 
-    private void setAlarm(long timeInMillis) {
+    private void setAlarm(long timeInMillis, long timeInHours, long timeInMinutes) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        //Der AlarmNotificationReceiver löst in "onReceive" die eigentliche Benachrichtigung aus
         Intent intent = new Intent(this, AlarmNotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        //Setting alarmManager to repeat every day
+
+        //Der "Alarm" soll sich täglich wiederholen
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
-        Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, "Du wirst täglich um "
+                + timeInHours + ":" + (timeInMinutes < 10 ? "0" + timeInMinutes : timeInMinutes)
+                + " benachrichtigt.", Toast.LENGTH_SHORT).show();
     }
 
     private void saveAlarmSet() {
@@ -113,16 +114,25 @@ public class AlarmActivity extends AppCompatActivity {
         //Bei älternen APIs wird dieser Channel einfach ignoriert (ist nicht in der Support Libary enthalten)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Channel name";
-            String description = "channel description";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(Config.CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
+            NotificationChannel channel = new NotificationChannel(Config.CHANNEL_ID, Config.CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription(Config.CHANNEL_DESCRIPTION);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String callingActivity = getIntent().getStringExtra(Config.TUTORIAL_EXTRA_NAME);
+        Log.d("calling", callingActivity == null ? "test" : callingActivity);
+        if(callingActivity != null) {
+            getIntent().removeExtra(Config.TUTORIAL_EXTRA_NAME);
+            if (checkAlarmSet()) {
+                startActivity(mainActivityIntent);
+            }
+        }
+
     }
 
 }

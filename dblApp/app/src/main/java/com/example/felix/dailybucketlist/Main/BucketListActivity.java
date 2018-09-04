@@ -1,8 +1,8 @@
 package com.example.felix.dailybucketlist.Main;
 
+
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,27 +10,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RemoteViews;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Goals.Goal;
-import com.example.felix.dailybucketlist.Goals.GoalActivity;
-import com.example.felix.dailybucketlist.MainActivity;
+import com.example.felix.dailybucketlist.Preferences.SettingsActivity;
 import com.example.felix.dailybucketlist.R;
-import com.example.felix.dailybucketlist.TabbingTutorial.PagerAdapter;
 import com.example.felix.dailybucketlist.Widget.BucketListAppWidget;
-import com.example.felix.dailybucketlist.Widget.WidgetRemoteViewsService;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -126,6 +116,7 @@ public class BucketListActivity extends AppCompatActivity {
                 Toast.makeText(this, "Löschfunktion wird bald implementiert", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_settings:
+                startActivity(new Intent(BucketListActivity.this, SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
