@@ -13,29 +13,25 @@ import android.widget.RemoteViews;
 import com.example.felix.dailybucketlist.R;
 import com.example.felix.dailybucketlist.Widget.WidgetRemoteViewsService;
 
-/**
- * Implementation of App Widget functionality.
- */
+//Implementation der App Widget Funktionalität
+// Das Widget zeigt alle Aufgaben der aktuellen Woche an
 public class BucketListAppWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        // Construct the RemoteViews object
+        // Initialisiere RemoteView für das Widget
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.collection_widget);
-
         Intent intent = new Intent(context, WidgetRemoteViewsService.class);
 
-        //appWidgetManager.updateAppWidget(appWidgetId, views);
-
+        // Setze Adapter für das Widget
         views.setRemoteAdapter(R.id.widgetListView, intent);
-
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
+        // Update Funktion für alle Widget
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
@@ -44,18 +40,6 @@ public class BucketListAppWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-
-    }
-
-    @Override
-    public void onEnabled(Context context) {
-
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
     }
 }
 

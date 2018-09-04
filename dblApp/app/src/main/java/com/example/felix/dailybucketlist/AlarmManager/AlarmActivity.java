@@ -22,7 +22,6 @@ import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Main.BucketListActivity;
 import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
-import com.example.felix.dailybucketlist.TabbingTutorial.TabbingActivity_V2;
 
 import java.util.Calendar;
 

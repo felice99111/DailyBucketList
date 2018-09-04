@@ -21,6 +21,8 @@ import com.example.felix.dailybucketlist.Main.BucketListActivity;
 import com.example.felix.dailybucketlist.MainActivity;
 import com.example.felix.dailybucketlist.R;
 
+// Fragment für das Tutorial
+// Zeigt jeweiliges Bild und Text an
 public class FragmentPage extends Fragment{
 
     @Nullable
@@ -37,16 +39,19 @@ public class FragmentPage extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        // Hole Seitennummer
         Bundle bundle = getArguments();
         int pageNumber = bundle.getInt("pageNumber");
         String imagePath = bundle.getString("imagePath");
 
-        ImageView image = (ImageView)getView().findViewById(R.id.imageView);
-        TextView text = (TextView)getView().findViewById(R.id.textView_tut);
+        // Setze Tutorial Bild und Text
+        ImageView image = getView().findViewById(R.id.imageView);
+        TextView text = getView().findViewById(R.id.textView_tut);
         int id = getResources().getIdentifier(imagePath, "mipmap", getContext().getPackageName());
         image.setImageResource(id);
         text.setText(bundle.getString("tutText"));
 
+        // Bei der letzten Tutorial Seite -> Zeige Button
         if(pageNumber == 3){
             Button button = getView().findViewById(R.id.btn_getStarted);
             button.setVisibility(View.VISIBLE);

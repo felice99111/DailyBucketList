@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+// Adapter gibt Fragment dür die Wochenansicht der Aufgaben zurück
+// Holt alle Aufgaben der Woche aus der Datenbank
 public class BucketListPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<Goal> allGoals;
@@ -35,12 +37,14 @@ public class BucketListPagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         goalIds = new ArrayList<String>();
 
+        // Hole alle Aufgaben der aktuellen Woche
         for (Goal goal : allGoals) {
             if (goal.getDate().get(Calendar.WEEK_OF_YEAR) == position + 1) {
                 goalIds.add(Long.toString(goal.getId()));
             }
         }
 
+        // Übergebe alle Aufgaben Ids der aktuellen Woche an das Fragment
         bundle.putStringArrayList("goalIds", goalIds);
         bundle.putInt("week", position + 1);
 

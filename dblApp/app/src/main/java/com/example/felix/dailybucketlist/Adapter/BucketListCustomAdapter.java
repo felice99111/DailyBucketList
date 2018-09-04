@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+// Adapter zur Anzeige der Aufgaben in der BucketListActivity
 public class BucketListCustomAdapter extends ArrayAdapter<Goal> {
     public BucketListCustomAdapter(@NonNull Context context, ArrayList<Goal> resource) {
         super(context, R.layout.bucketlist_item, resource);
@@ -34,21 +35,26 @@ public class BucketListCustomAdapter extends ArrayAdapter<Goal> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.bucketlist_item, parent,false);
 
+        // Setze alle view-Werte jeder Aufgabe
         final Goal goalItem = getItem(position);
-        TextView tv_Name = (TextView)customView.findViewById(R.id.textView_Name);
-        TextView tv_Day= (TextView)customView.findViewById(R.id.textView_Day);
-        ImageView iv_check = (ImageView)customView.findViewById(R.id.imageView_check);
+        TextView tv_Name = customView.findViewById(R.id.textView_Name);
+        TextView tv_Day= customView.findViewById(R.id.textView_Day);
+        ImageView iv_check = customView.findViewById(R.id.imageView_check);
 
         tv_Name.setText(goalItem.getName());
+
+        // Zeige Haken wenn Aufgabe erfüllt
         if(goalItem.isReached()){
             iv_check.setVisibility(View.VISIBLE);
         }
 
+        // Hole Wochentag
         String weekdays[] = new DateFormatSymbols(Locale.GERMAN).getWeekdays();
         int day = goalItem.getDate().get(Calendar.DAY_OF_WEEK);
         String dayShort = weekdays[day].substring(0, Math.min(weekdays[day].length(), 2));
         tv_Day.setText(dayShort);
 
+        // OnClick Funktion für jede Aufgabe, leitet auf Detailseite weiter
         customView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

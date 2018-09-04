@@ -17,6 +17,7 @@ import com.example.felix.dailybucketlist.R;
 
 import org.w3c.dom.Text;
 
+// Activity zeigt detailierte Ansicht einer Aufgabe an
 public class GoalActivity extends AppCompatActivity {
 
     Goal goal;
@@ -27,6 +28,7 @@ public class GoalActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_goal);
 
+        // Setze alle Werte der Aufgabe
         TextView tv_name = (TextView)findViewById(R.id.textView_goal_name);
         TextView tv_date = (TextView)findViewById(R.id.textView_goal_date);
         TextView tv_reach = (TextView)findViewById(R.id.textView_reach);
@@ -36,6 +38,7 @@ public class GoalActivity extends AppCompatActivity {
         final long goalId = getIntent().getLongExtra("goalId", 0);
         goal = BucketListDatabase.getInstance(this).readGoal(goalId);
 
+        // Wenn Aufgabe erfüllt zeige Text
         if(goal.isReached()){
             btn_reach.setVisibility(View.INVISIBLE);
             tv_reach.setText("Aufgabe erfüllt");
@@ -45,6 +48,7 @@ public class GoalActivity extends AppCompatActivity {
         tv_name.setText(goal.getName());
         tv_date.setText(goal.getDateInText());
 
+        // OnClick Funktion für erfüllt-Markierung
         btn_reach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +60,7 @@ public class GoalActivity extends AppCompatActivity {
             }
         });
 
+        // OnClick Funktion für Aufgabe löschen
         iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

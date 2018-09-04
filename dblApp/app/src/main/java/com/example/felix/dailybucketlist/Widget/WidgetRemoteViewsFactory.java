@@ -15,18 +15,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+// RemoteViewFactory zur Anzeige der Aufgaben der aktuellen Woche im Widget
 public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
-    private Context mContext;
+    private Context context;
     private ArrayList<Goal> goalList;
 
     public WidgetRemoteViewsFactory(Context applicationContext, Intent intent) {
-        mContext = applicationContext;
+        context = applicationContext;
     }
 
     @Override
     public void onCreate() {
-        List<Goal> allGoals = BucketListDatabase.getInstance(this.mContext).readAllGoals();
+        // Hole alle Aufgaben der Woche und speicher sie in der Liste
+        List<Goal> allGoals = BucketListDatabase.getInstance(this.context).readAllGoals();
         int currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
         goalList = new ArrayList<Goal>();
         for(Goal goal : allGoals){
@@ -53,7 +55,8 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     @Override
     public RemoteViews getViewAt(int position) {
-        RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.collection_widget_list_item);
+        // Setze RemoteView Text für alle Aufgaben
+        RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.collection_widget_list_item);
         rv.setTextViewText(R.id.widgetItemTaskNameLabel, goalList.get(position).getName());
 
         return rv;

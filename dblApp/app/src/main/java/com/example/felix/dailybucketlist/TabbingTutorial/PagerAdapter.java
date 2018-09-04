@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.felix.dailybucketlist.Config;
 
+// Adpater gibt die Fragements des Tutorials mit Bild und Text zurück
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
     int numOfTabs;
@@ -22,6 +23,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         bundle.putInt("pageNumber", pageNumber);
 
+        // Hole Tutorial Bild und Text basierend auf Seitenzahl
         switch(pageNumber){
             case 1:
                 bundle.putString("imagePath", Config.TUTORIAL_PICTURE_01);

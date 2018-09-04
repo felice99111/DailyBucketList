@@ -24,12 +24,13 @@ import com.example.felix.dailybucketlist.Widget.BucketListAppWidget;
 import java.util.Calendar;
 import java.util.List;
 
+// Main Activity der App
+// Listet alle aktiven Aufgaben aus der Datenbank auf
 public class BucketListActivity extends AppCompatActivity {
 
     List<Goal> allGoals;
     BucketListPagerAdapter bucketListPagerAdapter;
 
-    //ADDING NEW GOAL: Dialog and EditText Object
     private EditText inputAddNewGoal;
     private AlertDialog alertDialogAdd;
 
@@ -38,12 +39,16 @@ public class BucketListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bucketlist);
 
+        // Initialisiere View Pager für die Swipe Funktion
         ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(0);
 
+        // Hole alle Aufgaben aus der Datenbank und übergebe an Adapter
         allGoals =  BucketListDatabase.getInstance(this).readAllGoals();
         bucketListPagerAdapter = new BucketListPagerAdapter(getSupportFragmentManager(), allGoals);
         viewPager.setAdapter(bucketListPagerAdapter);
+
+        // Setze Seite auf aktuelle Woche
         Calendar calender = Calendar.getInstance();
         viewPager.setCurrentItem(calender.get(Calendar.WEEK_OF_YEAR) - 1);
 
@@ -51,21 +56,22 @@ public class BucketListActivity extends AppCompatActivity {
     }
 
     private void refreshListView() {
+        // aktualisiere Aufgabenliste
         allGoals.clear();
         allGoals.addAll(BucketListDatabase.getInstance(this).readAllGoals());
 
-        Intent sintent = new Intent(this, BucketListAppWidget.class);
-        sintent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        // Aktualisiere Widget
+        Intent updateIntent = new Intent(this, BucketListAppWidget.class);
+        updateIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), BucketListAppWidget.class));
-        sintent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
-        sendBroadcast(sintent);
+        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        sendBroadcast(updateIntent);
 
+        // Reload der Seite
         Intent intent = new Intent(getApplicationContext(), BucketListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-
-    //Implementieren der Action Bar:
 
     private void initActionBar() {
         addNewGoal();
