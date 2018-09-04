@@ -34,22 +34,22 @@ public class BucketListCustomAdapter extends ArrayAdapter<Goal> {
 
         // Setzt alle view-Werte jeder Aufgabe.
         final Goal goalItem = getItem(position);
-        TextView tv_Name = customView.findViewById(R.id.textView_Name);
-        TextView tv_Day= customView.findViewById(R.id.textView_Day);
-        ImageView iv_check = customView.findViewById(R.id.imageView_check);
+        TextView name = customView.findViewById(R.id.textView_Name);
+        TextView day= customView.findViewById(R.id.textView_Day);
+        ImageView check = customView.findViewById(R.id.imageView_check);
 
-        tv_Name.setText(goalItem.getName());
+        name.setText(goalItem.getName());
 
         // Zeigt Haken, wenn Aufgabe erfüllt.
         if(goalItem.isReached()){
-            iv_check.setVisibility(View.VISIBLE);
+            check.setVisibility(View.VISIBLE);
         }
 
         // Holt Wochentag.
         String weekdays[] = new DateFormatSymbols(Locale.GERMAN).getWeekdays();
-        int day = goalItem.getDate().get(Calendar.DAY_OF_WEEK);
-        String dayShort = weekdays[day].substring(0, Math.min(weekdays[day].length(), 2));
-        tv_Day.setText(dayShort);
+        int dayNum = goalItem.getDate().get(Calendar.DAY_OF_WEEK);
+        String dayShort = weekdays[dayNum].substring(0, Math.min(weekdays[dayNum].length(), 2));
+        day.setText(dayShort);
 
         // OnClick Funktion für jede Aufgabe, leitet auf Detailseite weiter.
         customView.setOnClickListener(new View.OnClickListener() {

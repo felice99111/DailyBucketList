@@ -23,12 +23,7 @@ public class FragmentPage extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        final View view;
-        view = inflater.inflate(R.layout.fragment_page, container, false);
-
-        return view;
-
+        return inflater.inflate(R.layout.fragment_page, container, false);
     }
 
     @Override

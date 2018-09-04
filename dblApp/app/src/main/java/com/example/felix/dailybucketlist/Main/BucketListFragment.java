@@ -24,17 +24,12 @@ public class BucketListFragment extends Fragment {
     ArrayList<Goal> goalsForWeek;
     ListView bucketListView;
     BucketListCustomAdapter adapter;
-    int week;
+    int weekNum;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        final View view;
-        view = inflater.inflate(R.layout.bucketlist_fragment, container, false);
-
-        return view;
-
+        return inflater.inflate(R.layout.bucketlist_fragment, container, false);
     }
 
     @Override
@@ -43,7 +38,7 @@ public class BucketListFragment extends Fragment {
 
         // Holt alle Aufgaben der aktuellen Woche basierend auf den goalIds.
         Bundle bundle = getArguments();
-        week = bundle.getInt("week");
+        weekNum = bundle.getInt("week");
         goalIds = bundle.getStringArrayList("goalIds");
 
         for(String goalId : goalIds){
@@ -51,8 +46,8 @@ public class BucketListFragment extends Fragment {
         }
 
         // Setzt Kalenderwoche.
-        TextView tv_week = getView().findViewById(R.id.textView_week);
-        tv_week.setText("KW " + Integer.toString(week));
+        TextView week = getView().findViewById(R.id.textView_week);
+        week.setText("KW " + Integer.toString(weekNum));
 
         initListView();
 

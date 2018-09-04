@@ -10,8 +10,6 @@ import com.example.felix.dailybucketlist.Config;
 // Adpater gibt die Fragements des Tutorials mit Bild und Text zurück.
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
-    int numOfTabs;
-
     public PagerAdapter (FragmentManager fm){
         super(fm);
     }

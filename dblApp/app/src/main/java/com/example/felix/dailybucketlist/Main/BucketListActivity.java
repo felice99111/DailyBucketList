@@ -40,7 +40,7 @@ public class BucketListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bucketlist);
 
         // Initialisiert View Pager für die Swipe Funktion.
-        ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(0);
 
         // Holt alle Aufgaben aus der Datenbank und übergibt diese an Adapter.
@@ -126,7 +126,6 @@ public class BucketListActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
