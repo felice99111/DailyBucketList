@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -120,15 +121,15 @@ public class AlarmActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String callingActivity = getIntent().getStringExtra(Config.TUTORIAL_EXTRA_NAME);
-        Log.d("calling", callingActivity == null ? "test" : callingActivity);
-        if(callingActivity != null) {
-            getIntent().removeExtra(Config.TUTORIAL_EXTRA_NAME);
+        //onResume wird bei jedem Aufruf der Activity aufgerufen. Die AlarmActivity soll nur beim ersten Start der App bzw. über die Settings aufgerufen werden
+        //können. Wird sie aus den Settings bzw. Preferences aufgerufen, wird keine "calling activity" übergeben. Dies ist nur der Fall, wenn
+        //die AlarmActivity mit "startActivityForResult()" aufgerufen wird. Andernfalls ist die calling activity null.
+        if(getCallingActivity() != null) {
             if (checkAlarmSet()) {
                 startActivity(mainActivityIntent);
             }
         }
-
     }
+
 
 }

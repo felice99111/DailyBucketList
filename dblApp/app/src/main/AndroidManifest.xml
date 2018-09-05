@@ -12,9 +12,7 @@
 
         <activity
             android:name=".AlarmManager.AlarmActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleTask"
-            android:taskAffinity="" >
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="com.example.felix.dailybucketlist.AlarmManager"/>
                 <category android:name="android.intent.category.DEFAULT" />

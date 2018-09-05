@@ -49,11 +49,13 @@ public class FragmentPage extends Fragment{
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), AlarmActivity.class);
-                    intent.putExtra(Config.TUTORIAL_EXTRA_NAME, Config.TUTORIAL_EXTRA_VALUE);
-                    view.getContext().startActivity(intent);}
+                    //Mit startActivityForResult wird der AlarmActivity beim Aufruf "getCallingActivity()" die Eltern Activity übergeben
+                    startActivityForResult(intent, 0);
+                }
             });
 
         }
     }
+
 
 }

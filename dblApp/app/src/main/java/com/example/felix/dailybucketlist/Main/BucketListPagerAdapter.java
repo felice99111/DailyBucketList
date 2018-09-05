@@ -39,10 +39,13 @@ public class BucketListPagerAdapter extends FragmentStatePagerAdapter {
 
         // Holt alle Aufgaben der aktuellen Woche.
         for (Goal goal : allGoals) {
-            if (goal.getDate().get(Calendar.WEEK_OF_YEAR) == position + 1) {
-                goalIds.add(Long.toString(goal.getId()));
+            if(goal.getDate() != null) {
+                if (goal.getDate().get(Calendar.WEEK_OF_YEAR) == position + 1) {
+                    goalIds.add(Long.toString(goal.getId()));
+                }
             }
         }
+
 
         // Übergibt alle Aufgaben Ids der aktuellen Woche an das Fragment.
         bundle.putStringArrayList("goalIds", goalIds);
