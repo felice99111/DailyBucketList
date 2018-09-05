@@ -19,10 +19,10 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="tab1">Tutorial Seite 1</string>
     <string name="tab2">Tutorial Seite 2</string>
-    <string name="tutorial_text_1">Organisiere deine Aufgaben und behalte den Überblick. Per Swipe nach links wechselst du zur nächsten Seite.</string>
+    <string name="tutorial_text_1">Organisiere deine Aufgaben und behalte den Überblick. Dieses Tutorial erklärt dir die Funktionen der App. Du kannst es nach dem Start jederzeit unter den Einstellungen wieder aufrufen. Per Swipe nach links wechselst du zur nächsten Seite.</string>
     <string name="tutorial_text_2">Über das "+" Symbol erstellst du neue Aufgaben.</string>
     <string name="tutorial_text_3">Wähle eine Aufgabe aus und markiere sie als "erfüllt".</string>
-    <string name="tutorial_text_4">Lasse dir eine Notification zur gewünschten Uhrzeit senden. Den Zeitpunkt kannst du jederzeit unter den Einstellungen ändern.</string>
+    <string name="tutorial_text_4">Lasse dir eine Notification zur gewünschten Uhrzeit senden, um die Erfüllung deiner Ziele zu überprüfen. Den Zeitpunkt kannst du jederzeit unter den Einstellungen ändern.</string>
     <string name="title_activity_tabbing__v2">TabbingActivity_V2</string>
 
     <!--WIDGET STRINGS-->
@@ -37,5 +37,8 @@
     <string name="pref_summary_show_tutorial">Das Tutorial erklärt Dir, wie die App funktioniert</string>
     <string name="pref_title_show_tutorial">Tutorial</string>
     <string name="btn_getStarted_text">Los geht\'s</string>
+    <string name="calendar_view_heading">Nach welcher Kalendarwoche suchst du?</string>
+    <string name="calendar_week_text">KW: </string>
+    <string name="btn_search_week_text">Suchen</string>
 
 </resources>

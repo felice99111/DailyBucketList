@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ddd"
+        android:gravity="center_horizontal"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:text="@string/calendar_view_heading"
+        android:textAllCaps="true"
+        android:textSize="14sp" />
+
+    <CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/calendar_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:gravity="center"
+        android:paddingBottom="13dp"
+        android:paddingTop="13dp"
+        android:text="@string/calendar_week_text"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_search_week"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/btn_search_week_text" />
+
+</LinearLayout>

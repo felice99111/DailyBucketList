@@ -65,4 +65,6 @@ public class BucketListFragment extends Fragment {
             bucketListView.addHeaderView(((LayoutInflater) getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.bucketlist_heading, null));
         }
     }
+
+
 }

@@ -31,7 +31,6 @@ public class Config {
     public static final String ALARM_PREFERENCES = "alarm_preferences";
     public static final String ALARM_PREFERENCES_KEY = "alarm_key";
     public static final boolean ALARM_SET = true;
-    public static final boolean ALARM_NOT_SET = false;
 
     //Constants for Tutorial
 
@@ -39,7 +38,8 @@ public class Config {
     public static final String TUTORIAL_PICTURE_02 = "tut2";
     public static final String TUTORIAL_PICTURE_03 = "tut3";
     public static final String TUTORIAL_PICTURE_04 = "tut4";
-    public static final String TUTORIAL_EXTRA_NAME = "calling-activity";
-    public static final String TUTORIAL_EXTRA_VALUE = "tabbing";
+    public static final String TUTORIAL_PREFERENCES = "tutorial_preferences";
+    public static final String TUTORIAL_PREFERENCES_KEY = "tutorial_key";
+    public static final boolean TUTORIAL_PASSED = true;
 
 }

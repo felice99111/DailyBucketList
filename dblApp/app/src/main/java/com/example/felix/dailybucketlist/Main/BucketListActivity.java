@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Goals.Goal;
+import com.example.felix.dailybucketlist.Goals.GoalSearchActivity;
 import com.example.felix.dailybucketlist.Preferences.SettingsActivity;
 import com.example.felix.dailybucketlist.R;
 import com.example.felix.dailybucketlist.Widget.BucketListAppWidget;
@@ -34,9 +35,12 @@ public class BucketListActivity extends AppCompatActivity {
     private EditText inputAddNewGoal;
     private AlertDialog alertDialogAdd;
 
+    public static boolean isRuning = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isRuning = true;
         setContentView(R.layout.activity_bucketlist);
 
         // Initialisiert View Pager für die Swipe Funktion.
@@ -112,7 +116,7 @@ public class BucketListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                Toast.makeText(this, "Suchfunktion wird am Ende implementiert", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(BucketListActivity.this, GoalSearchActivity.class));
                 return true;
             case R.id.action_add_goal:
                 alertDialogAdd.show();

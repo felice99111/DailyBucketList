@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.felix.dailybucketlist.Goals.Goal;
-import com.example.felix.dailybucketlist.Goals.GoalActivity;
+import com.example.felix.dailybucketlist.Goals.GoalReachActivity;
 import com.example.felix.dailybucketlist.R;
 
 import java.text.DateFormatSymbols;
@@ -55,7 +55,7 @@ public class BucketListCustomAdapter extends ArrayAdapter<Goal> {
         customView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), GoalActivity.class);
+                Intent intent = new Intent(getContext(), GoalReachActivity.class);
                 intent.putExtra("goalId", goalItem.getId());
                 getContext().startActivity(intent);
             }

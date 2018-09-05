@@ -14,10 +14,8 @@ import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Main.BucketListActivity;
 import com.example.felix.dailybucketlist.R;
 
-import org.w3c.dom.Text;
-
 // Activity zeigt detailierte Ansicht einer Aufgabe an
-public class GoalActivity extends AppCompatActivity {
+public class GoalReachActivity extends AppCompatActivity {
 
     Goal goal;
 
@@ -25,7 +23,7 @@ public class GoalActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_goal);
+        setContentView(R.layout.activity_goal_reach);
 
         // Setze alle Werte der Aufgabe
         TextView tv_name = (TextView)findViewById(R.id.textView_goal_name);
@@ -52,7 +50,7 @@ public class GoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goal.setReached(true);
-                BucketListDatabase.getInstance(GoalActivity.this).updateGoal(goal);
+                BucketListDatabase.getInstance(GoalReachActivity.this).updateGoal(goal);
                 Intent intent = new Intent(getApplicationContext(), BucketListActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -63,7 +61,7 @@ public class GoalActivity extends AppCompatActivity {
         iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BucketListDatabase.getInstance(GoalActivity.this).deleteGoal(goal);
+                BucketListDatabase.getInstance(GoalReachActivity.this).deleteGoal(goal);
                 Intent intent = new Intent(getApplicationContext(), BucketListActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

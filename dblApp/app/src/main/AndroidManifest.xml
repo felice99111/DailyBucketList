@@ -20,8 +20,9 @@
         </activity>
 
         <activity android:name=".Main.BucketListActivity" />
-        <activity android:name=".Goals.GoalActivity" />
+        <activity android:name=".Goals.GoalReachActivity" />
         <activity android:name=".Preferences.SettingsActivity" />
+        <activity android:name=".Goals.GoalSearchActivity"/>
 
         <receiver
             android:name=".AlarmManager.AlarmNotificationReceiver"
