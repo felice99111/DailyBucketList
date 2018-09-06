@@ -28,20 +28,6 @@ public class Goal {
         this.date = date;
     }
 
-    //gibt Tag in deutsch! zurück
-    public String getDay() {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        Date d = new Date();
-        return sdf.format(d);
-    }
-
-    //gibt Monat in deutsch zurück
-    public String getMonth() {
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMM");
-        Date d = new Date();
-        return sdf.format(d);
-    }
-
     public String getDateInText() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         Date d = new Date();

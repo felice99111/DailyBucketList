@@ -27,9 +27,12 @@ public class BucketListPagerAdapter extends FragmentStatePagerAdapter {
     ArrayList<String> goalIds;
     BucketListFragment bucketListFragment;
 
+    private int year;
+
     public BucketListPagerAdapter(FragmentManager fm, List<Goal>allGoals) {
         super(fm);
         this.allGoals = allGoals;
+        year = Calendar.getInstance().get(Calendar.YEAR);
     }
 
     @Override
@@ -40,7 +43,7 @@ public class BucketListPagerAdapter extends FragmentStatePagerAdapter {
         // Holt alle Aufgaben der aktuellen Woche.
         for (Goal goal : allGoals) {
             if(goal.getDate() != null) {
-                if (goal.getDate().get(Calendar.WEEK_OF_YEAR) == position + 1) {
+                if (goal.getDate().get(Calendar.WEEK_OF_YEAR) == position + 1 && goal.getDate().get(Calendar.YEAR) == year) {
                     goalIds.add(Long.toString(goal.getId()));
                 }
             }
@@ -50,11 +53,18 @@ public class BucketListPagerAdapter extends FragmentStatePagerAdapter {
         // Übergibt alle Aufgaben Ids der aktuellen Woche an das Fragment.
         bundle.putStringArrayList("goalIds", goalIds);
         bundle.putInt("week", position + 1);
+        bundle.putInt("year", year);
 
         bucketListFragment = new BucketListFragment();
         bucketListFragment.setArguments(bundle);
 
         return bucketListFragment;
+    }
+
+    public void setYear(int year, int week) {
+        this.year = year;
+        //getItem "updatet" die Anzeige im Fragment - zeigt die ausgewählte Woche und Jahr bzw. dessen Ziele an.
+        getItem(week);
     }
 
     // Zeigt ein Jahr an.

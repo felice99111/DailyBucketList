@@ -21,7 +21,7 @@ public class BucketListDatabase extends SQLiteOpenHelper {
         super(context, Config.DB_NAME, null, Config.VERSION);
     }
 
-    //mit Hilfe der Methode ist keine konkrete Instanz der BucketListDatabase nötig
+    //mit Hilfe der Methode erhält man von jeder Klasse aus Zugriff auf die Datenbank
     public static BucketListDatabase getInstance(Context context) {
         if(instance == null) {
             instance = new BucketListDatabase(context);
@@ -38,7 +38,6 @@ public class BucketListDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //Methode vermutlich nicht zielführend! Versionsprobleme + aktuell wird die bestehende Datenbank jeweils gelöscht und neu erstellt -> effizienter gestalten!
         String dropTable = "DROP TABLE IF EXISTS " + Config.TABLE_NAME;
         db.execSQL(dropTable);
         onCreate(db);
@@ -62,7 +61,7 @@ public class BucketListDatabase extends SQLiteOpenHelper {
     public Goal readGoal(long id) {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.query(Config.TABLE_NAME, new String[]{Config.ID_COLUMN, Config.NAME_COLUMN, Config.GOAL_REACHED_COLUMN, Config.DATE_COLUMN}, Config.ID_COLUMN + " = ?", new String[]{String.valueOf(id)}, null, null, null);
-        //SELECT ID, NAME, GOAL_REACHED, DATE WHERE ID = ?
+        //Query: SELECT ID, NAME, GOAL_REACHED, DATE WHERE ID = ?
         Goal goal = null;
         //wenn Cursor erstellt wurde und Daten vorhanden sind
         if(cursor != null && cursor.getCount() > 0) {

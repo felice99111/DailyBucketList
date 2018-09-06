@@ -25,6 +25,7 @@ public class BucketListFragment extends Fragment {
     ListView bucketListView;
     BucketListCustomAdapter adapter;
     int weekNum;
+    int year;
 
     @Nullable
     @Override
@@ -39,15 +40,18 @@ public class BucketListFragment extends Fragment {
         // Holt alle Aufgaben der aktuellen Woche basierend auf den goalIds.
         Bundle bundle = getArguments();
         weekNum = bundle.getInt("week");
+        year = bundle.getInt("year");
         goalIds = bundle.getStringArrayList("goalIds");
 
         for(String goalId : goalIds){
             goalsForWeek.add(BucketListDatabase.getInstance(getContext()).readGoal(Long.parseLong(goalId)));
         }
 
-        // Setzt Kalenderwoche.
-        TextView week = getView().findViewById(R.id.textView_week);
-        week.setText("KW " + Integer.toString(weekNum));
+        // Setzt Kalenderwoche und Jahr.
+        TextView weekTxt = getView().findViewById(R.id.textView_week);
+        weekTxt.setText("KW " + Integer.toString(weekNum));
+        TextView yearTxt = getView().findViewById(R.id.textView_year);
+        yearTxt.setText(Integer.toString(year));
 
         initListView();
 

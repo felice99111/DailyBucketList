@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Main.BucketListActivity" />
+        <activity android:name=".Main.BucketListActivity"
+                    android:launchMode="standard"/>
         <activity android:name=".Goals.GoalReachActivity" />
         <activity android:name=".Preferences.SettingsActivity" />
         <activity android:name=".Goals.GoalSearchActivity"/>

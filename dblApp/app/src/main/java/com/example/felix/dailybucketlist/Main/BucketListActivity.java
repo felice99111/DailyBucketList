@@ -10,11 +10,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Goals.Goal;
 import com.example.felix.dailybucketlist.Goals.GoalSearchActivity;
@@ -34,6 +36,7 @@ public class BucketListActivity extends AppCompatActivity {
 
     private EditText inputAddNewGoal;
     private AlertDialog alertDialogAdd;
+    private ViewPager viewPager;
 
     public static boolean isRuning = false;
 
@@ -44,7 +47,7 @@ public class BucketListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bucketlist);
 
         // Initialisiert View Pager für die Swipe Funktion.
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(0);
 
         // Holt alle Aufgaben aus der Datenbank und übergibt diese an Adapter.
@@ -122,15 +125,27 @@ public class BucketListActivity extends AppCompatActivity {
                 alertDialogAdd.show();
                 inputAddNewGoal.setText("");
                 return true;
-            case R.id.action_delete:
-                Toast.makeText(this, "Löschfunktion wird bald implementiert", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.action_settings:
                 startActivity(new Intent(BucketListActivity.this, SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Wenn die Activity aus der GoalSearchActivity (via SEARCH_INTENT_ACTIVITY_KEY) aufgerufen wurde, erhält das Fragment die benötigten Daten, um
+        //die Ziele und das UI der ausgewählten Woche korrekt anzuzeigen.
+        String callingActivity = getIntent().getStringExtra(Config.SEARCH_INTENT_ACTIVITY_KEY);
+        int week = getIntent().getIntExtra(Config.SEARCH_INTENT_WEEK_KEY, 0);
+        int year = getIntent().getIntExtra(Config.SEARCH_INTENT_YEAR_KEY, 0);
+        if(callingActivity != null && callingActivity.equals(Config.SEARCH_INTENT_ACTIVITY_VALUE)) {
+            viewPager.setCurrentItem(week-1);
+            bucketListPagerAdapter.setYear(year, week);
+        }
+
     }
 
 }

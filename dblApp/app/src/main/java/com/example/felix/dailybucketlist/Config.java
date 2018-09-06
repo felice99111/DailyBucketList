@@ -42,4 +42,11 @@ public class Config {
     public static final String TUTORIAL_PREFERENCES_KEY = "tutorial_key";
     public static final boolean TUTORIAL_PASSED = true;
 
+    //Constants for ActionBar
+
+    public static final String SEARCH_INTENT_WEEK_KEY = "week";
+    public static final String SEARCH_INTENT_YEAR_KEY = "year";
+    public static final String SEARCH_INTENT_ACTIVITY_KEY = "calling_activity";
+    public static final String SEARCH_INTENT_ACTIVITY_VALUE = "search_activity";
+
 }
