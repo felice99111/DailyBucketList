@@ -20,7 +20,7 @@ import com.example.felix.dailybucketlist.R;
 
 import java.util.Calendar;
 
-// Activity zeigt detailierte Ansicht einer Aufgabe an
+// Activity zeigt detaillierte Ansicht einer Aufgabe an.
 public class GoalReachActivity extends AppCompatActivity {
 
     Goal goal;
@@ -32,17 +32,17 @@ public class GoalReachActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_goal_reach);
 
-        // Setze alle Werte der Aufgabe
-        TextView tv_name = (TextView)findViewById(R.id.textView_goal_name);
-        TextView tv_date = (TextView)findViewById(R.id.textView_goal_date);
-        TextView tv_reach = (TextView)findViewById(R.id.textView_reach);
-        ImageView iv_delete = (ImageView)findViewById(R.id.imageView_delete);
-        Button btn_reach = (Button)findViewById(R.id.btn_reached);
+        // Setzt alle Werte der Aufgabe.
+        TextView tv_name = findViewById(R.id.textView_goal_name);
+        TextView tv_date = findViewById(R.id.textView_goal_date);
+        TextView tv_reach = findViewById(R.id.textView_reach);
+        ImageView iv_delete = findViewById(R.id.imageView_delete);
+        Button btn_reach = findViewById(R.id.btn_reached);
 
         final long goalId = getIntent().getLongExtra(Config.GOAL_ID_KEY, 0);
         goal = BucketListDatabase.getInstance(this).readGoal(goalId);
 
-        // Wenn Aufgabe erfüllt zeige Text
+        // Zeigt Text, wenn Aufgabe erfüllt ist.
         if(goal.isReached()){
             btn_reach.setVisibility(View.INVISIBLE);
             tv_reach.setText(this.getResources().getString(R.string.goal_reached_text));
@@ -52,7 +52,7 @@ public class GoalReachActivity extends AppCompatActivity {
         tv_name.setText(goal.getName());
         tv_date.setText(goal.getDateInText());
 
-        // OnClick Funktion für erfüllt-Markierung
+        // OnClick Funktion für erfüllt-Markierung.
         btn_reach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +64,7 @@ public class GoalReachActivity extends AppCompatActivity {
             }
         });
 
-        // OnClick Funktion für Aufgabe löschen
+        // OnClick Funktion für Aufgabe löschen.
         iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
