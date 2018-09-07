@@ -37,8 +37,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                 .setContentText(context.getResources().getString(R.string.notification_text))
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
-                .setContentIntent(resultPendingIntent)
-                .setContentInfo("Info");
+                .setContentIntent(resultPendingIntent);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(Config.NOTIFICATION_ID, builder.build());

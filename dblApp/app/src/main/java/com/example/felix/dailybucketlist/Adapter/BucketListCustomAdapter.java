@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Goals.Goal;
 import com.example.felix.dailybucketlist.Goals.GoalReachActivity;
 import com.example.felix.dailybucketlist.R;
@@ -56,7 +57,7 @@ public class BucketListCustomAdapter extends ArrayAdapter<Goal> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), GoalReachActivity.class);
-                intent.putExtra("goalId", goalItem.getId());
+                intent.putExtra(Config.GOAL_ID_KEY, goalItem.getId());
                 getContext().startActivity(intent);
             }
         });

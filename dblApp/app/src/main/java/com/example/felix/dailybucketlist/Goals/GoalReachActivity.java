@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Main.BucketListActivity;
 import com.example.felix.dailybucketlist.R;
@@ -38,13 +39,13 @@ public class GoalReachActivity extends AppCompatActivity {
         ImageView iv_delete = (ImageView)findViewById(R.id.imageView_delete);
         Button btn_reach = (Button)findViewById(R.id.btn_reached);
 
-        final long goalId = getIntent().getLongExtra("goalId", 0);
+        final long goalId = getIntent().getLongExtra(Config.GOAL_ID_KEY, 0);
         goal = BucketListDatabase.getInstance(this).readGoal(goalId);
 
         // Wenn Aufgabe erfüllt zeige Text
         if(goal.isReached()){
             btn_reach.setVisibility(View.INVISIBLE);
-            tv_reach.setText("Aufgabe erfüllt");
+            tv_reach.setText(this.getResources().getString(R.string.goal_reached_text));
             tv_reach.setTextColor(Color.GREEN);
         }
 
@@ -75,9 +76,9 @@ public class GoalReachActivity extends AppCompatActivity {
     private void requestDelete() {
         //Der User könnte aus Versehen auf den Lösch Button getippt haben, deshalb wird ein AlertDialog gezeigt, um den Löschvorgang zu hinterfragen.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Möchtest du das Ziel wirklich löschen?");
+        builder.setMessage(this.getResources().getString(R.string.delete_message));
 
-        builder.setPositiveButton("löschen", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(this.getResources().getString(R.string.delete_positive), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Stimmt der User zu, wird das Ziel aus der Datenbank gelöscht und die App zeigt die aktualisierte MainActivity an
@@ -88,7 +89,7 @@ public class GoalReachActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(this.getResources().getString(R.string.delete_negative), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

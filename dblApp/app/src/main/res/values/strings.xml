@@ -12,8 +12,24 @@
     <string name="action_search">Search</string>
     <string name="action_add_goal">Add Goal</string>
     <string name="action_settings">Settings</string>
-    <string name="button_set_alarm">Setze Uhrzeit</string>
+
+    <!--SEARCH GOAL STRINGS-->
     <string name="toast_goal_not_existing">In der ausgewählten Woche hast du kein Ziel erstellt.</string>
+    <string name="calendar_view_heading">Nach welcher Kalendarwoche suchst du?</string>
+    <string name="calendar_week_text">KW: </string>
+    <string name="btn_search_week_text">Suchen</string>
+
+    <!--ADD GOAL STRINGS-->
+    <string name="add_message">Welches Ziel setzt du dir?</string>
+    <string name="add_positive">hinzufügen</string>
+    <string name="add_negative">abbrechen</string>
+
+    <!--DELETE GOAL STRINGS-->
+    <string name="delete_message">Möchtest du das Ziel wirklich löschen?</string>
+    <string name="delete_positive">löschen</string>
+    <string name="delete_negative">abbrechen</string>
+
+
 
     <!--TUTORIAL STRINGS-->
     <string name="title_activity_tabbing">TabbingActivity</string>
@@ -25,6 +41,7 @@
     <string name="tutorial_text_3">Wähle eine Aufgabe aus und markiere sie als "erfüllt" oder lösche den Eintrag.</string>
     <string name="tutorial_text_4">Lasse dir eine Notification zur gewünschten Uhrzeit senden, um die Erfüllung deiner Ziele zu überprüfen. Den Zeitpunkt kannst du jederzeit unter den Einstellungen ändern.</string>
     <string name="title_activity_tabbing__v2">TabbingActivity_V2</string>
+    <string name="btn_getStarted_text">Los geht\'s</string>
 
     <!--WIDGET STRINGS-->
     <string name="appwidget_text">EXAMPLE</string>
@@ -33,13 +50,18 @@
     <!--NOTIFICATION STRINGS-->
     <string name="notification_title">Hast Du heute deine Ziele erreicht?</string>
     <string name="notification_text">Trage es jetzt ein!</string>
+    <string name="button_set_alarm">Setze Uhrzeit</string>
+
+    <!--PREFERENCES STRINGS-->
     <string name="pref_summary_set_notification">Ändere den Zeitpunkt deiner Benachrichtigung</string>
     <string name="pref_title_set_notification">Benachrichtigungszeitpunkt</string>
     <string name="pref_summary_show_tutorial">Das Tutorial erklärt Dir, wie die App funktioniert</string>
     <string name="pref_title_show_tutorial">Tutorial</string>
-    <string name="btn_getStarted_text">Los geht\'s</string>
-    <string name="calendar_view_heading">Nach welcher Kalendarwoche suchst du?</string>
-    <string name="calendar_week_text">KW: </string>
-    <string name="btn_search_week_text">Suchen</string>
+
+    <!--GOAL REACH ACTIVITY STRINGS-->
+    <string name="goal_reached_text">Aufgabe erfüllt</string>
+
+
+
 
 </resources>

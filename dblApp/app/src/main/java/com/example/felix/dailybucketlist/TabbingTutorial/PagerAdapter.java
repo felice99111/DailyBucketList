@@ -24,25 +24,25 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         int pageNumber = position + 1;
         Fragment pageFragment = new FragmentPage();
         Bundle bundle = new Bundle();
-        bundle.putInt("pageNumber", pageNumber);
+        bundle.putInt(Config.TUTORIAL_INTENT_PAGE_KEY, pageNumber);
 
         // Holt Tutorial Bild und Text basierend auf Seitenzahl.
         switch(pageNumber){
             case 1:
-                bundle.putString("imagePath", Config.TUTORIAL_PICTURE_01);
-                bundle.putString("tutText", context.getResources().getString(R.string.tutorial_text_1));
+                bundle.putString(Config.TUTORIAL_INTENT_PATH_KEY, Config.TUTORIAL_PICTURE_01);
+                bundle.putString(Config.TUTORIAL_INTENT_TEXT_KEY, context.getResources().getString(R.string.tutorial_text_1));
                 break;
             case 2:
-                bundle.putString("imagePath", Config.TUTORIAL_PICTURE_02);
-                bundle.putString("tutText", context.getResources().getString(R.string.tutorial_text_2));
+                bundle.putString(Config.TUTORIAL_INTENT_PATH_KEY, Config.TUTORIAL_PICTURE_02);
+                bundle.putString(Config.TUTORIAL_INTENT_TEXT_KEY, context.getResources().getString(R.string.tutorial_text_2));
                 break;
             case 3:
-                bundle.putString("imagePath", Config.TUTORIAL_PICTURE_03);
-                bundle.putString("tutText", context.getResources().getString(R.string.tutorial_text_3));
+                bundle.putString(Config.TUTORIAL_INTENT_PATH_KEY, Config.TUTORIAL_PICTURE_03);
+                bundle.putString(Config.TUTORIAL_INTENT_TEXT_KEY, context.getResources().getString(R.string.tutorial_text_3));
                 break;
             case 4:
-                bundle.putString("imagePath", Config.TUTORIAL_PICTURE_04);
-                bundle.putString("tutText", context.getResources().getString(R.string.tutorial_text_4));
+                bundle.putString(Config.TUTORIAL_INTENT_PATH_KEY, Config.TUTORIAL_PICTURE_04);
+                bundle.putString(Config.TUTORIAL_INTENT_TEXT_KEY, context.getResources().getString(R.string.tutorial_text_4));
                 break;
         }
 

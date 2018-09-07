@@ -86,11 +86,11 @@ public class BucketListActivity extends AppCompatActivity {
 
     private void addNewGoal() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Welches Ziel setzt du dir?");
+        builder.setMessage(this.getResources().getString(R.string.add_message));
         inputAddNewGoal = new EditText(this);
         builder.setView(inputAddNewGoal);
 
-        builder.setPositiveButton("hinzufügen", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(this.getResources().getString(R.string.add_positive), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String goalName = inputAddNewGoal.getText().toString();
@@ -100,7 +100,7 @@ public class BucketListActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(this.getResources().getString(R.string.add_negative), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

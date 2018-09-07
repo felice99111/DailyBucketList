@@ -32,15 +32,15 @@ public class FragmentPage extends Fragment{
 
         // Holt Seitennummer.
         Bundle bundle = getArguments();
-        int pageNumber = bundle.getInt("pageNumber");
-        String imagePath = bundle.getString("imagePath");
+        int pageNumber = bundle.getInt(Config.TUTORIAL_INTENT_PAGE_KEY);
+        String imagePath = bundle.getString(Config.TUTORIAL_INTENT_PATH_KEY);
 
         // Setzt Tutorial Bild und Text.
         ImageView image = getView().findViewById(R.id.imageView);
         TextView text = getView().findViewById(R.id.textView_tut);
         int id = getResources().getIdentifier(imagePath, "mipmap", getContext().getPackageName());
         image.setImageResource(id);
-        text.setText(bundle.getString("tutText"));
+        text.setText(bundle.getString(Config.TUTORIAL_INTENT_TEXT_KEY));
 
         // Bei der letzten Tutorial Seite -> Zeigt Button.
         if(pageNumber == 4){

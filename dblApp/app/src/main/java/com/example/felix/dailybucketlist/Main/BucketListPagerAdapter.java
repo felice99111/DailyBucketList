@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Goals.Goal;
 import com.example.felix.dailybucketlist.TabbingTutorial.FragmentPage;
@@ -51,9 +52,9 @@ public class BucketListPagerAdapter extends FragmentStatePagerAdapter {
 
 
         // Übergibt alle Aufgaben Ids der aktuellen Woche an das Fragment.
-        bundle.putStringArrayList("goalIds", goalIds);
-        bundle.putInt("week", position + 1);
-        bundle.putInt("year", year);
+        bundle.putStringArrayList(Config.ADAPTER_INTENT_IDS_KEY, goalIds);
+        bundle.putInt(Config.ADAPTER_INTENT_WEEK_KEY, position + 1);
+        bundle.putInt(Config.ADAPTER_INTENT_YEAR_KEY, year);
 
         bucketListFragment = new BucketListFragment();
         bucketListFragment.setArguments(bundle);

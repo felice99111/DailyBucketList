@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.felix.dailybucketlist.Adapter.BucketListCustomAdapter;
+import com.example.felix.dailybucketlist.Config;
 import com.example.felix.dailybucketlist.Database.BucketListDatabase;
 import com.example.felix.dailybucketlist.Goals.Goal;
 import com.example.felix.dailybucketlist.R;
@@ -39,9 +40,9 @@ public class BucketListFragment extends Fragment {
 
         // Holt alle Aufgaben der aktuellen Woche basierend auf den goalIds.
         Bundle bundle = getArguments();
-        weekNum = bundle.getInt("week");
-        year = bundle.getInt("year");
-        goalIds = bundle.getStringArrayList("goalIds");
+        weekNum = bundle.getInt(Config.ADAPTER_INTENT_WEEK_KEY);
+        year = bundle.getInt(Config.ADAPTER_INTENT_YEAR_KEY);
+        goalIds = bundle.getStringArrayList(Config.ADAPTER_INTENT_IDS_KEY);
 
         for(String goalId : goalIds){
             goalsForWeek.add(BucketListDatabase.getInstance(getContext()).readGoal(Long.parseLong(goalId)));
