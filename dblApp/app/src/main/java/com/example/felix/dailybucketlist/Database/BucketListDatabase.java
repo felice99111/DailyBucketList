@@ -31,6 +31,7 @@ public class BucketListDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //Mit Hilfe des folgenden Querys "createQuery" lässt sich die Datenbank mit den benötigten Spalten und Datentypen aufsetzen
         //Database kann keinen boolean speichern, deshalb integer mit 0 (false) und 1 (true)
         String createQuery = "create table " + Config.TABLE_NAME + " (" + Config.ID_COLUMN + " integer primary key autoincrement, " + Config.NAME_COLUMN + " text not null, " + Config.GOAL_REACHED_COLUMN + " integer default null, " + Config.DATE_COLUMN + " integer default null);";
         db.execSQL(createQuery);
@@ -63,13 +64,15 @@ public class BucketListDatabase extends SQLiteOpenHelper {
         Cursor cursor = database.query(Config.TABLE_NAME, new String[]{Config.ID_COLUMN, Config.NAME_COLUMN, Config.GOAL_REACHED_COLUMN, Config.DATE_COLUMN}, Config.ID_COLUMN + " = ?", new String[]{String.valueOf(id)}, null, null, null);
         //Query: SELECT ID, NAME, GOAL_REACHED, DATE WHERE ID = ?
         Goal goal = null;
-        //wenn Cursor erstellt wurde und Daten vorhanden sind
+        //wenn Cursor erstellt wurde und Daten vorhanden sind, dann ...
         if(cursor != null && cursor.getCount() > 0) {
+            //Der cursor handelt jedes einzelne Element in der Datenbank ab.
             cursor.moveToFirst();
             goal = new Goal(cursor.getString(cursor.getColumnIndex(Config.NAME_COLUMN)));
             goal.setId(cursor.getLong(cursor.getColumnIndex(Config.ID_COLUMN)));
 
             if(cursor.getInt(cursor.getColumnIndex(Config.GOAL_REACHED_COLUMN)) == 1){
+                //Da die SQLiteDatabase keine bools speichern kann, wird an dieser Stelle der boolean Wert für das Goal Objekt gesetzt
                 goal.setReached(true);
             }
 
@@ -92,6 +95,7 @@ public class BucketListDatabase extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery("SELECT * FROM " + Config.TABLE_NAME, null);
         if(cursor.moveToFirst()) {
             do{
+                //der cursor "zeigt" auf jedes Objekt in der Datenbank und holt dieses bis der cursor am Ende angelangt ist.
                 Goal goal = readGoal(cursor.getLong(cursor.getColumnIndex(Config.ID_COLUMN)));
                 if(goal != null) {
                     goals.add(goal);

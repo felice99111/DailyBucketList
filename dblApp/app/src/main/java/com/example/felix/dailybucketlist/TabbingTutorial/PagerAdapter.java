@@ -44,6 +44,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(Config.TUTORIAL_INTENT_PATH_KEY, Config.TUTORIAL_PICTURE_04);
                 bundle.putString(Config.TUTORIAL_INTENT_TEXT_KEY, context.getResources().getString(R.string.tutorial_text_4));
                 break;
+            case 5:
+                bundle.putString(Config.TUTORIAL_INTENT_PATH_KEY, Config.TUTORIAL_PICTURE_05);
+                bundle.putString(Config.TUTORIAL_INTENT_TEXT_KEY, context.getResources().getString(R.string.tutorial_text_5));
+                break;
         }
 
         pageFragment.setArguments(bundle);
@@ -54,6 +58,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 }

@@ -85,18 +85,24 @@ public class BucketListActivity extends AppCompatActivity {
     }
 
     private void addNewGoal() {
+        //Das Hinzufügen eines Ziels geschieht über einen einfachen AlertDialog.Builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(this.getResources().getString(R.string.add_message));
+        //im builder wird ein leeres EditText-Feld gesetzt
         inputAddNewGoal = new EditText(this);
         builder.setView(inputAddNewGoal);
 
+        //Der AlertDialog.Builder hat standardisiert zwei Funktionen: zustimmen (positive Button) und ablehnen (negative Button)
         builder.setPositiveButton(this.getResources().getString(R.string.add_positive), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String goalName = inputAddNewGoal.getText().toString();
-                BucketListDatabase database = BucketListDatabase.getInstance(BucketListActivity.this); //Kontext des onClickListeners, deshalb würde nur this eine falsche Referenz übergeben
-                database.createGoal(new Goal(goalName, Calendar.getInstance()));
-                refreshListView();
+
+                if(!goalName.equals("")) {
+                    BucketListDatabase database = BucketListDatabase.getInstance(BucketListActivity.this); //Kontext des onClickListeners, deshalb würde nur this eine falsche Referenz übergeben
+                    database.createGoal(new Goal(goalName, Calendar.getInstance()));
+                    refreshListView();
+                }
             }
         });
 
@@ -119,9 +125,11 @@ public class BucketListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
+                //Die Aktion search wird in einer eigenen "GoalSerachActivity" behandelt
                 startActivity(new Intent(BucketListActivity.this, GoalSearchActivity.class));
                 return true;
             case R.id.action_add_goal:
+                //Beim klick auf das "+" wird der AlertDialog.Builder angezeigt.
                 alertDialogAdd.show();
                 inputAddNewGoal.setText("");
                 return true;

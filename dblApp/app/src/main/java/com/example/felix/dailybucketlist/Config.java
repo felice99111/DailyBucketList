@@ -31,6 +31,7 @@ public class Config {
     public static final String TUTORIAL_PICTURE_02 = "tut2";
     public static final String TUTORIAL_PICTURE_03 = "tut3";
     public static final String TUTORIAL_PICTURE_04 = "tut4";
+    public static final String TUTORIAL_PICTURE_05 = "tut5";
     public static final String TUTORIAL_INTENT_PAGE_KEY = "page_number";
     public static final String TUTORIAL_INTENT_PATH_KEY = "image_path";
     public static final String TUTORIAL_INTENT_TEXT_KEY = "tut_text";

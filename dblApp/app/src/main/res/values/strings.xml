@@ -39,7 +39,8 @@
     <string name="tutorial_text_1">Organisiere deine Aufgaben und behalte den Überblick. Dieses Tutorial erklärt dir die Funktionen der App. Du kannst es nach dem Start jederzeit unter den Einstellungen wieder aufrufen. Per Swipe nach links wechselst du zur nächsten Seite.</string>
     <string name="tutorial_text_2">Über das "+" Symbol erstellst du neue Aufgaben.</string>
     <string name="tutorial_text_3">Wähle eine Aufgabe aus und markiere sie als "erfüllt" oder lösche den Eintrag.</string>
-    <string name="tutorial_text_4">Lasse dir eine Notification zur gewünschten Uhrzeit senden, um die Erfüllung deiner Ziele zu überprüfen. Den Zeitpunkt kannst du jederzeit unter den Einstellungen ändern.</string>
+    <string name="tutorial_text_4">Über das Lupen Symbol suchst du nach vergangenen Einträgen. Alternativ kannst du auf der Startseite zwischen den Wochen swipen.</string>
+    <string name="tutorial_text_5">Lasse dir eine Notification zur gewünschten Uhrzeit senden, um die Erfüllung deiner Ziele zu überprüfen. Den Zeitpunkt kannst du jederzeit unter den Einstellungen ändern.</string>
     <string name="title_activity_tabbing__v2">TabbingActivity_V2</string>
     <string name="btn_getStarted_text">Los geht\'s</string>
 

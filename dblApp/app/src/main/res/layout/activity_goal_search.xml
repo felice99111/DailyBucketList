@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         android:background="#eee"
         android:gravity="center"
-        android:paddingBottom="13dp"
-        android:paddingTop="13dp"
+        android:paddingBottom="18dp"
+        android:paddingTop="18dp"
         android:text="@string/calendar_week_text"
         android:textSize="16sp" />
 

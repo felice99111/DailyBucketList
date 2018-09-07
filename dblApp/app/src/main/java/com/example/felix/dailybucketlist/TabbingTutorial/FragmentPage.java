@@ -43,7 +43,7 @@ public class FragmentPage extends Fragment{
         text.setText(bundle.getString(Config.TUTORIAL_INTENT_TEXT_KEY));
 
         // Bei der letzten Tutorial Seite -> Zeigt Button.
-        if(pageNumber == 4){
+        if(pageNumber == 5){
             Button button = getView().findViewById(R.id.btn_getStarted);
             button.setVisibility(View.VISIBLE);
             button.setOnClickListener(new View.OnClickListener() {

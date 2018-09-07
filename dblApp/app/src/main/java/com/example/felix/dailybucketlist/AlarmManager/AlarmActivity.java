@@ -91,6 +91,15 @@ public class AlarmActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AlarmNotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
 
+        //Der AlarmManager verhält sich je nach SDK unterschiedlich. Deshalb müssen für verschiedene SDKs verschiedene Methoden verwendet werden.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+            } else {
+                alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+        }
+
         //Der "Alarm" soll sich täglich wiederholen
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
 

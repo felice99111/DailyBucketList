@@ -68,6 +68,9 @@ public class GoalSearchActivity extends AppCompatActivity {
     }
 
     private void showChoosenWeek() {
+        //existiert in der ausgewählten Woche ein Ziel, so werden die benötigten Daten Woche und Jahr an die Main Activity übergeben, um die gegebene
+        //Woche anzuzeigen. Über den "SEARCH_INTENT_ACTIVITY_KEY" erhält die Main Activity die Information, aus welcher Activity aus "onResume()"
+        //aufgerufen wurde.
         Intent intent = new Intent(this, BucketListActivity.class);
         intent.putExtra(Config.SEARCH_INTENT_WEEK_KEY, week);
         intent.putExtra(Config.SEARCH_INTENT_YEAR_KEY, year);
@@ -80,6 +83,8 @@ public class GoalSearchActivity extends AppCompatActivity {
         txt_calendar_week = (TextView) findViewById(R.id.calendar_week);
         calendarView = (CalendarView) findViewById(R.id.calendar_view);
 
+        //Die aktuelle Kalendarwoche wird beim Start der Activity angezeigt. Die Klassenvariablen week und year werden bei jedem "klick" auf den Kalendar
+        //überschrieben.
         week = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
         year = Calendar.getInstance().get(Calendar.YEAR);
         txt_calendar_week.setText(placeholder + week);
@@ -88,10 +93,12 @@ public class GoalSearchActivity extends AppCompatActivity {
     private boolean weekExists() {
         //es wird überprüft, ob überhaupt ein Goal in der Datenbank existiert, das in der ausgewählten Kalendarwoche bzw. Jahr erstellt wurde
         for(Goal goal: goals) {
-            int goalWeek = goal.getDate().get(Calendar.WEEK_OF_YEAR);
-            int goalYear = goal.getDate().get(Calendar.YEAR);
-            if(goalWeek == week && goalYear == year) {
-                return true;
+            if(goal.getDate() != null) {
+                int goalWeek = goal.getDate().get(Calendar.WEEK_OF_YEAR);
+                int goalYear = goal.getDate().get(Calendar.YEAR);
+                if (goalWeek == week && goalYear == year) {
+                    return true;
+                }
             }
         }
         return false;
