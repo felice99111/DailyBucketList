@@ -20,8 +20,6 @@ import com.example.felix.dailybucketlist.R;
 
 import java.util.Calendar;
 
-// Vgl. zum Widget auch: https://codinginflow.com/tutorials/android/app-widget/part-4
-
 // Activity zeigt detaillierte Ansicht einer Aufgabe an.
 public class GoalReachActivity extends AppCompatActivity {
 

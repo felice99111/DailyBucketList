@@ -8,6 +8,8 @@ import android.widget.RemoteViews;
 
 import com.example.felix.dailybucketlist.R;
 
+// Vgl. zum Widget auch: https://codinginflow.com/tutorials/android/app-widget/part-4
+
 // Implementation der App Widget Funktionalität.
 // Das Widget zeigt alle Aufgaben der aktuellen Woche an.
 public class BucketListAppWidget extends AppWidgetProvider {
